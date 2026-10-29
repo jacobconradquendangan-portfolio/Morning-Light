@@ -161,7 +161,7 @@ export function FoodEntryForm({ onClose, editingEntry }: FoodEntryFormProps) {
                   <p className="eyebrow text-accent-primary">From database</p>
                   <p className="text-sm font-medium text-text-primary truncate mt-0.5">{dbFood.name}</p>
                   <p className="text-xs text-text-muted tabular mt-0.5">
-                    {dbFood.calories} kcal per {dbFood.servingDescription}
+                    {dbFood.calories} kcal per {dbFood.servingDescription} ({dbFood.servingWeightGrams}g)
                   </p>
                 </div>
                 <button
@@ -173,20 +173,29 @@ export function FoodEntryForm({ onClose, editingEntry }: FoodEntryFormProps) {
                   <Icons.Close className="w-4 h-4" size={16} />
                 </button>
               </div>
-              <div className="flex items-center justify-between pt-3 mt-3 border-t border-accent-primary/20">
-                <label htmlFor="servings-input" className="text-xs font-medium text-text-secondary">
-                  Servings
-                </label>
-                <input
-                  id="servings-input"
-                  type="number"
-                  min="0.1"
-                  max="100"
-                  step="0.1"
-                  value={servingsInput}
-                  onChange={(e) => handleServingsChange(e.target.value)}
-                  className="w-20 px-2.5 py-1.5 text-sm text-center input-base tabular"
-                />
+              <div className="pt-3 mt-3 border-t border-accent-primary/20">
+                <div className="flex items-center gap-3 flex-wrap">
+                  <label htmlFor="servings-input" className="text-xs font-medium text-text-secondary whitespace-nowrap">
+                    Quantity ({dbFood.servingDescription})
+                  </label>
+                  <input
+                    id="servings-input"
+                    type="number"
+                    min="0.1"
+                    max="100"
+                    step="0.1"
+                    value={servingsInput}
+                    onChange={(e) => handleServingsChange(e.target.value)}
+                    className="w-20 px-2.5 py-1.5 text-sm text-center input-base tabular"
+                    aria-label={`Quantity in ${dbFood.servingDescription}`}
+                  />
+                  <span className="text-xs text-text-muted tabular">
+                    = {(parseFloat(servingsInput) * dbFood.servingWeightGrams).toFixed(1)}g total
+                  </span>
+                </div>
+                <p className="text-[0.6875rem] text-text-muted mt-1.5">
+                  Macros scale with quantity. 1 × {dbFood.servingDescription} = {dbFood.servingWeightGrams}g.
+                </p>
               </div>
             </div>
           )}
