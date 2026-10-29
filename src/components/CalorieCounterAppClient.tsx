@@ -37,18 +37,30 @@ function CalorieCounterContent() {
   const [activeTab, setActiveTab] = useState<TabId>('log');
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [editingEntry, setEditingEntry] = useState<FoodEntry | null>(null);
+  const [formMealType, setFormMealType] = useState<FoodEntry['mealType'] | undefined>(undefined);
+  const [shouldOpenSearch, setShouldOpenSearch] = useState(false);
 
   const isToday = selectedDate === todayISO();
   const showDateNav = activeTab === 'log';
 
-  const openForm = useCallback((entry?: FoodEntry | null) => {
-    setEditingEntry(entry ?? null);
-    setIsFormOpen(true);
-  }, []);
+  const openForm = useCallback(
+    (
+      entry?: FoodEntry | null,
+      { mealType, openSearch }: { mealType?: FoodEntry['mealType']; openSearch?: boolean } = {}
+    ) => {
+      setEditingEntry(entry ?? null);
+      setFormMealType(mealType);
+      setShouldOpenSearch(!!openSearch);
+      setIsFormOpen(true);
+    },
+    []
+  );
 
   const closeForm = useCallback(() => {
     setIsFormOpen(false);
     setEditingEntry(null);
+    setFormMealType(undefined);
+    setShouldOpenSearch(false);
   }, []);
 
   const navigateToWater = useCallback(() => setActiveTab('water'), []);
@@ -122,13 +134,6 @@ function CalorieCounterContent() {
                 <Icons.ChevronRight className="w-5 h-5" size={20} />
               </button>
             </div>
-          )}
-
-          {activeTab === 'log' && (
-            <button onClick={() => openForm(null)} className="btn btn-primary">
-              <Icons.Add className="w-5 h-5" size={20} />
-              Add food
-            </button>
           )}
         </div>
       </div>
@@ -204,7 +209,13 @@ function CalorieCounterContent() {
       )}
 
       {isFormOpen && (
-        <FoodEntryForm key={editingEntry?.id ?? 'new'} onClose={closeForm} editingEntry={editingEntry} />
+        <FoodEntryForm
+          key={editingEntry?.id ?? 'new'}
+          onClose={closeForm}
+          editingEntry={editingEntry}
+          mealType={formMealType}
+          openSearch={shouldOpenSearch}
+        />
       )}
     </AppShell>
   );

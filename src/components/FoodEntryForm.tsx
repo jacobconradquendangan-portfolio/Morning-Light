@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useFood } from '@/context/FoodContext';
 import type { FoodEntry } from '@/types/food';
 import type { FoodSearchResult } from '@/types/foodDatabase';
@@ -17,9 +17,11 @@ const MEAL_OPTIONS = [
 interface FoodEntryFormProps {
   onClose: () => void;
   editingEntry?: FoodEntry | null;
+  mealType?: FoodEntry['mealType'];
+  openSearch?: boolean;
 }
 
-export function FoodEntryForm({ onClose, editingEntry }: FoodEntryFormProps) {
+export function FoodEntryForm({ onClose, editingEntry, mealType, openSearch }: FoodEntryFormProps) {
   const { addEntry, deleteEntry, selectedDate } = useFood();
   const isEditing = !!editingEntry;
 
@@ -45,10 +47,16 @@ export function FoodEntryForm({ onClose, editingEntry }: FoodEntryFormProps) {
       protein: '',
       carbs: '',
       fat: '',
-      mealType: 'breakfast' as FoodEntry['mealType'],
+      mealType: mealType ?? 'breakfast',
       date: selectedDate,
     };
   });
+
+  useEffect(() => {
+    if (openSearch) {
+      setIsSearchOpen(true);
+    }
+  }, [openSearch]);
 
   const applyFoodToForm = (food: FoodSearchResult, multiplier: number) => {
     setFormData((prev) => ({

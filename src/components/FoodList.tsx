@@ -14,7 +14,10 @@ interface MealOption {
 }
 
 interface FoodListProps {
-  onOpenForm: (entry?: FoodEntry | null) => void;
+  onOpenForm: (
+    entry?: FoodEntry | null,
+    options?: { mealType?: FoodEntry['mealType']; openSearch?: boolean }
+  ) => void;
 }
 
 const MEAL_OPTIONS: MealOption[] = [
@@ -218,15 +221,7 @@ export function FoodList({ onOpenForm }: FoodListProps) {
   );
 
   const handleAdd = (mealType: FoodEntry['mealType']) => {
-    onOpenForm({
-      name: '',
-      calories: 0,
-      protein: 0,
-      carbs: 0,
-      fat: 0,
-      mealType,
-      date: selectedDate,
-    } as FoodEntry);
+    onOpenForm(undefined, { mealType });
   };
 
   const hasAnyEntries = entries.length > 0;
