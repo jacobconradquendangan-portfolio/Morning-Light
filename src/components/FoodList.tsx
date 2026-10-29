@@ -56,7 +56,7 @@ function FoodEntryRow({ entry, onEdit, onDelete }: { entry: FoodEntry; onEdit: (
   };
 
   return (
-    <div className="group flex items-center gap-3 px-3.5 py-3 rounded-lg hover:bg-base-surface-hover transition-colors duration-150">
+    <div className={`group flex items-center gap-3 px-3.5 py-3 rounded-lg hover:bg-base-surface-hover transition-colors duration-150 card-lift`}>
       <button
         onClick={onEdit}
         onKeyDown={handleKeyDown}
@@ -116,7 +116,7 @@ function MealSection({
   const hasEntries = entries.length > 0;
 
   return (
-    <section className="card overflow-hidden stagger-in" aria-labelledby={`meal-${meal.value}-heading`}>
+    <section className={`card overflow-hidden stagger-in card-lift`} aria-labelledby={`meal-${meal.value}-heading`}>
       {/* Header */}
       <div className="flex items-center gap-3 px-4 py-3 border-b border-border-subtle bg-base-surface-elevated/50">
         <span

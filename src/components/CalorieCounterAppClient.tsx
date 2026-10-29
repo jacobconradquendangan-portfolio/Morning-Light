@@ -155,7 +155,7 @@ function CalorieCounterContent() {
     <AppShell activeTab={activeTab} onTabChange={setActiveTab} header={header} mobileAction={mobileAction}>
       <ErrorBoundary label={TAB_LABELS[activeTab]} resetKey={activeTab}>
         {activeTab === 'log' && (
-          <div className="px-4 sm:px-6 lg:px-8 py-5 lg:py-8 max-w-6xl mx-auto space-y-5">
+          <div key={activeTab} className={`px-4 sm:px-6 lg:px-8 py-5 lg:py-8 max-w-6xl mx-auto space-y-5 content-reveal`}>
             {/* Two-column on desktop: summary rail + food log */}
             <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_28rem] gap-6 items-start">
               <div className="space-y-5 order-2 lg:order-1">
@@ -172,25 +172,25 @@ function CalorieCounterContent() {
         )}
 
         {activeTab === 'water' && (
-          <div className="px-4 sm:px-6 lg:px-8 py-5 lg:py-8 max-w-3xl mx-auto">
+          <div key={activeTab} className={`px-4 sm:px-6 lg:px-8 py-5 lg:py-8 max-w-3xl mx-auto content-reveal`}>
             <WaterTracker />
           </div>
         )}
 
         {activeTab === 'goal' && (
-          <div className="px-4 sm:px-6 lg:px-8 py-5 lg:py-8 max-w-4xl mx-auto">
+          <div key={activeTab} className={`px-4 sm:px-6 lg:px-8 py-5 lg:py-8 max-w-4xl mx-auto content-reveal`}>
             <GoalTabView />
           </div>
         )}
 
         {activeTab === 'history' && (
-          <div className="px-4 sm:px-6 lg:px-8 py-5 lg:py-8 max-w-6xl mx-auto">
+          <div key={activeTab} className={`px-4 sm:px-6 lg:px-8 py-5 lg:py-8 max-w-6xl mx-auto content-reveal`}>
             <HistoryView />
           </div>
         )}
 
         {activeTab === 'profile' && (
-          <div className="px-4 sm:px-6 lg:px-8 py-5 lg:py-8 max-w-4xl mx-auto">
+          <div key={activeTab} className={`px-4 sm:px-6 lg:px-8 py-5 lg:py-8 max-w-4xl mx-auto content-reveal`}>
             <ProfileView />
           </div>
         )}

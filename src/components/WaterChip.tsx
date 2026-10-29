@@ -31,7 +31,7 @@ export function WaterChip({ onNavigateToWater }: { onNavigateToWater: () => void
       onKeyDown={handleKeyDown}
       role="button"
       tabIndex={0}
-      className="bg-base-canvas/60 border border-border-subtle rounded-xl p-3.5"
+      className={`bg-base-canvas/60 border border-border-subtle rounded-xl p-3.5 ${isGoalMet ? 'goal-pulse' : ''}`}
       aria-label={`Water: ${formatMl(total)} of ${formatMl(goal)} (${percentage}%). Open water tracker.`}
     >
       <div className="flex items-center justify-between mb-2">

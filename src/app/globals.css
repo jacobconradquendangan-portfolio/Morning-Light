@@ -546,6 +546,72 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
   transition: stroke-dashoffset var(--duration-slow) var(--easing-emphatic);
 }
 
+/* ---- Card lift — desktop hover affordance ---- */
+.card-lift {
+  transition: transform var(--duration-normal) var(--easing-standard),
+              box-shadow var(--duration-normal) var(--easing-standard);
+}
+
+@media (pointer: fine) {
+  .card-lift:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-level3);
+  }
+}
+
+/* ---- Goal pulse — subtle pulse on progress containers ---- */
+@keyframes goal-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(74, 124, 89, 0.3); }
+  50% { box-shadow: 0 0 0 12px rgba(74, 124, 89, 0.1); }
+}
+
+/* Apply pulse to all macro tiles (subtle, continuous) */
+.macro-tile {
+  animation: goal-pulse 3s var(--easing-standard) infinite;
+}
+
+/* ---- Modal scale-in entrance ---- */
+@keyframes modal-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.modal-scale-in {
+  animation: modal-scale-in var(--duration-normal) var(--easing-spring) both;
+}
+
+/* ---- Content reveal — page entrance ---- */
+@keyframes content-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(32px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.content-reveal {
+  animation: content-reveal 700ms var(--easing-emphatic) both;
+}
+
+/* ---- Macro tile entrance stagger ---- */
+.macro-tile {
+  animation: slide-up 600ms var(--easing-emphatic) both;
+}
+
+.macro-tile:nth-child(1) { animation-delay: 0ms; }
+.macro-tile:nth-child(2) { animation-delay: 120ms; }
+.macro-tile:nth-child(3) { animation-delay: 240ms; }
+.macro-tile:nth-child(4) { animation-delay: 360ms; }
+
 /* ============================================================================
    UTILITIES
    ============================================================================ */
