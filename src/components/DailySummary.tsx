@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useFood } from '@/context/FoodContext';
 import type { MacroGoals } from '@/types/food';
 import { Icons } from './Icons';
+import { WaterChip } from './WaterChip';
 
 interface ProgressRingProps {
   progress: number;
@@ -349,6 +350,7 @@ export function DailySummary() {
           color="var(--color-macro-fat)"
           kcalPerGram={9}
         />
+        <WaterChip onNavigateToWater={() => {}} />
       </div>
 
       <FormulaBreakdown macroKey="calories" current={calorieCurrent} goal={calorieGoal} />

@@ -166,7 +166,6 @@ function CalorieCounterContent() {
                 <ErrorBoundary label="Summary" resetKey={activeTab}>
                   <DailySummary />
                 </ErrorBoundary>
-                <WaterChip onNavigateToWater={navigateToWater} />
               </div>
             </div>
           </div>
