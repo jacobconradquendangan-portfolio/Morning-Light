@@ -10,7 +10,7 @@ import { formatMl } from '@/lib/format';
    ============================================================================ */
 
 export function WaterChip({ onNavigateToWater }: { onNavigateToWater: () => void }) {
-  const { selectedDate, waterGoal, addWater, getWaterTotalForDate } = useFood();
+  const { selectedDate, waterGoal, getWaterTotalForDate } = useFood();
 
   const total = getWaterTotalForDate(selectedDate);
   const goal = waterGoal.amount;
@@ -84,16 +84,6 @@ export function WaterChip({ onNavigateToWater }: { onNavigateToWater: () => void
         </div>
 
         {/* Quick add */}
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            addWater(waterGoal.glassSize, selectedDate);
-          }}
-          className="flex-shrink-0 px-3 py-1.5 text-xs font-semibold text-macro-water bg-macro-water/10 border border-macro-water/25 rounded-full hover:bg-macro-water/20 transition-colors tabular"
-          aria-label={`Add ${waterGoal.glassSize}ml water`}
-        >
-          +{formatMl(waterGoal.glassSize)}
-        </button>
       </div>
 
       <p className={`mt-3 text-[0.6875rem] flex items-center gap-1.5 ${isGoalMet ? 'text-semantic-success-light' : 'text-text-muted'}`}>
