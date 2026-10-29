@@ -13,7 +13,7 @@ export interface TabDef {
 }
 
 export const TABS: readonly TabDef[] = [
-  { id: 'log', label: 'Log', description: 'Track today’s meals', icon: Icons.Log },
+  { id: 'log', label: 'Food', description: 'Track today’s meals', icon: Icons.Log },
   { id: 'water', label: 'Water', description: 'Hydration intake', icon: Icons.Droplet },
   { id: 'goal', label: 'Goals', description: 'Daily targets', icon: Icons.Target },
   { id: 'history', label: 'History', description: 'Trends & past days', icon: Icons.Chart },

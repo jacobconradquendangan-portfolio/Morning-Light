@@ -16,7 +16,7 @@ import { HistoryView } from './HistoryView';
 import type { FoodEntry } from '@/types/food';
 
 const TAB_LABELS: Record<TabId, string> = {
-  log: 'Food log',
+  log: 'Food intake',
   water: 'Water intake',
   goal: 'Goals',
   history: 'History',
