@@ -152,7 +152,7 @@ function CalorieCounterContent() {
         {activeTab === 'log' && (
           <div className="px-4 sm:px-6 lg:px-8 py-5 lg:py-8 max-w-6xl mx-auto space-y-5">
             {/* Two-column on desktop: summary rail + food log */}
-            <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_22rem] gap-6 items-start">
+            <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_28rem] gap-6 items-start">
               <div className="space-y-5 order-2 lg:order-1">
                 <FoodList onOpenForm={openForm} />
               </div>

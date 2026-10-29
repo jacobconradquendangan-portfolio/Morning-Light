@@ -225,12 +225,12 @@ function MacroTile({ label, current, goal, unit, color, kcalPerGram }: MacroTile
         />
       </div>
 
-      <div className="flex items-center justify-between mt-2">
+      <div className="flex items-center gap-1.5 mt-2 whitespace-nowrap">
         <span className="text-[0.6875rem] text-text-muted">
           {isOver ? `${(current - goal).toLocaleString()}${unit} over` : `${remaining.toLocaleString()}${unit} left`}
         </span>
         {kcalPerGram && (
-          <span className="text-[0.6875rem] text-text-muted tabular">
+          <span className="text-[0.6875rem] text-text-muted tabular ml-1">
             {(current * kcalPerGram).toFixed(0)} kcal
           </span>
         )}
